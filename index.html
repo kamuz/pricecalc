@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        input[type="text"], select, textarea, button{
+            outline: none;
+            font-size: 15px;
+            height: 30px;
+            color: rgb(74, 86, 99);
+        }
+
+        .form-container{
+            font-size: 15px;
+            max-width: 700px;
+            margin: 10px auto;
+            border-radius: 20px;
+            box-shadow: 0 2px 7px rgba(0, 0, 0, .2);
+            padding: 30px;
+            font-family: 'Open Sans', sans-serif !important;
+            color: rgb(74, 86, 99);
+        }
+
+        .form-container .border{
+            border: 2px dashed #FB739C;
+            padding: 10px 30px 30px;
+            display: flex;
+            border-radius: 18px;
+        }
+
+        .form-container .left,
+        .form-container .right{
+            width: 50%;
+            padding: 0 20px;
+        }
+
+        .form-container label{
+            display: block;
+            margin: 20px 0 10px;
+        }
+
+        .form-container select{
+            border-radius: 20px;
+            padding: 0 10px;
+            border: 1px solid #FB739C;
+        }
+
+        .form-container #result{
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, .3);
+            box-shadow: 0 0 5px rgba(0, 0, 0, .3) inset;
+            padding: 0 10px;
+        }
+
+        .form-container #currencies {
+            font-weight: bold;
+        }
+
+        .form-container #currencies .item {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .form-container #discover{
+            border-radius: 20px;
+            padding: 5px 10px;
+            background-color: #68C398;
+            border: 1px solid #68C398;
+            color: #fff;
+            padding: 0 30px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: background 1s;
+        }
+
+        .form-container #discover:hover{
+            background-color: #5DAF89;
+        }
+    </style>
+    <form action="#">
+        <div class="form-container">
+            <div class="border">
+                <div class="left">
+                    <label for="provider">Select your current software provider:</label>
+                    <select id="provider">
+                        <option value="144">Famly</option>
+                        <option value="35">Little Vista</option>
+                        <option value="125">Connect Childcare</option>
+                        <option value="73">Nursery in a Box</option>
+                        <option value="113">Blossom</option>
+                        <option value="83">First Steps</option>
+                        <option value="41">Carele</option>
+                        <option value="67">Child Diary</option>
+                    </select>
+                    <label>Select your currency:</label>
+                    <div id="currencies">
+                        <div class="item"><input type="radio" name="currency" value="gbp" id="gbp" checked> £ </div>
+                        <div class="item"><input type="radio" name="currency" value="euro" id="euro"> € </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <label for="result">Click to discover your average savings per month</label>
+                    <button id="discover">Discover</button>
+                    <input type="text" name="result" id="result">
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+    const rate = 1.2;
+    const provider = document.getElementById('provider');
+    const gbp = document.getElementById('gbp');
+    const euro = document.getElementById('euro');
+    const discover = document.getElementById('discover');
+    const result = document.getElementById('result');
+
+    discover.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (gbp.checked == true) {
+            result.value = 'You could save £' + provider.value;
+        } else {
+            result.value = 'You could save €' + Math.round(provider.value * rate);
+        }
+    });
+    </script>
+</html>
